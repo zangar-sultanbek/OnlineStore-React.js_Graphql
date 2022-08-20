@@ -14,16 +14,6 @@ A brief description of the Online Shop:
 1. The data is fetched from local GraphQL server running on port 4000. Make sure to run the GraphQL server first by using and then launch the actual project. The project is ran on local host 3000 and the GraphQL server must be running on port 4000. (In case if graphql server is missing you can download it from here: https://github.com/scandiweb/junior-react-endpoint)
 Follow these steps to start the GraphQL server:
 
-    1. Switch directory to the GraphQL server folder(the folder you unzipped the endpoint)
-    2. Download apollo client by: 
-    npm i @apollo/client
-    3. Run the build(For npm): 
-    npm run build
-    4. Start the server:
-    npm start
-    5. Then switch directory to the folder containing the React project and start it as well:
-    npm start
-
     1. Run the React project and start it:
     npm install
     npm start
