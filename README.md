@@ -24,6 +24,18 @@ Follow these steps to start the GraphQL server:
     5. Then switch directory to the folder containing the React project and start it as well:
     npm start
 
+    1. Run the React project and start it:
+    npm install
+    npm start
+    2. Switch directory to the GraphQL server folder(the folder you unzipped the endpoint)
+    3. Download apollo client by: 
+    npm i @apollo/client
+    4. Run the build(For npm): 
+    npm run build
+    5. Start the server:
+    npm start
+    6. In order for application to work, both React project & the Graphql endpoint must be running.
+
 2. You're able:
 
     1. To see the full product list
