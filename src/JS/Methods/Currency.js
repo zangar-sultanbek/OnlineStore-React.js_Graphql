@@ -4,5 +4,5 @@ export const getCurrency = (currency, prices) => {
     }
 
     const {currency : priceCurrency, amount} = prices.find(price => price.currency.label === currency.label);
-    return {priceCurrency, amount};
+    return {priceCurrency, amount : amount.toFixed(2)};
 }

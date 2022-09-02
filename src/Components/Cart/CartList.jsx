@@ -1,6 +1,6 @@
 import React from 'react';
 import CartItem from './CartItem';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { getCurrency } from '../../JS/Methods/Currency';
 
 const mapStateToProps = (state) => ({

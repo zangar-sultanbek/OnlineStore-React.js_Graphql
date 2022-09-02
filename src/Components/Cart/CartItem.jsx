@@ -1,10 +1,9 @@
 import React from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import '../../SCSS/Cart/CartItem.scss';
 import Attribute from './Attribute';
 import { TYPES } from '../../JS/Redux/Reducers';
 import arrowImg from '../../Assets/Icons/Cart/Arrow.svg';
-import { useState } from 'react';
 
 class CartItem extends React.Component{
   constructor(props){

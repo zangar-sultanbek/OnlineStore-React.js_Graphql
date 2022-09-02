@@ -1,13 +1,12 @@
-import React, { useState }  from 'react';
+import React from 'react';
 import {createPortal} from 'react-dom';
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector, connect } from 'react-redux';
+import { Link, Outlet } from 'react-router-dom';
+import { connect } from 'react-redux';
 import logoIcon from '../../Assets/Icons/Navbar/a-logo.svg';
 import cartIcon from '../../Assets/Icons/Navbar/Empty Cart.svg'
 import '../../SCSS/Navbar/Navbar.scss';
 import CartOverlay from '../CartOverlay/CartOverlay';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
-import { useQuery } from '@apollo/client';
 import { getCategoriesAndCurrencies } from '../../JS/GraphQL/Queries';
 import { TYPES } from '../../JS/Redux/Reducers';
 import routes from '../../JS/Router/routes';
@@ -62,6 +61,7 @@ class Navbar extends React.Component{
     }
 
     render(){
+        console.log(Number(10.2).toFixed(2));
         if(this.state.error){
             return <h1 className='fetch_error_message'>{
                 this.state.error.message}
