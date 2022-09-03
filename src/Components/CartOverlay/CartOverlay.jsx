@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../SCSS/CartOverlay/CartOverlay.scss';
-import { useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import routes from '../../JS/Router/routes';
 import { TYPES } from '../../JS/Redux/Reducers';

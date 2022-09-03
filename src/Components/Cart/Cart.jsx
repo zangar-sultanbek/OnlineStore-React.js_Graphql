@@ -1,9 +1,8 @@
 import React from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import '../../SCSS/Cart/Cart.scss';
 import totalPrice from '../../JS/Methods/TotalPrice';
 import { TYPES } from '../../JS/Redux/Reducers';
-import { useState } from 'react';
 
 import CartList from './CartList';
 import CartCheer from './CartCheer';

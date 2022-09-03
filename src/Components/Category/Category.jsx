@@ -1,4 +1,4 @@
-import React, {memo, useState, useEffect, useMemo} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import '../../SCSS/Category/Category.scss';
 import ProductList from './ProductList';

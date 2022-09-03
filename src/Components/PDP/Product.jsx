@@ -1,12 +1,9 @@
-import { useQuery } from '@apollo/client';
-import React, { useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+
+import React from 'react';
+import {  connect } from 'react-redux';
 import { getProduct } from '../../JS/GraphQL/Queries';
 import '../../SCSS/PDP/Product.scss';
 import Attribute from '../Cart/Attribute';
-import routes from '../../JS/Router/routes';
-import { useCallback } from 'react';
 import {TYPES} from '../../JS/Redux/Reducers';
 import client from '../../Client';
 import { getCurrency } from '../../JS/Methods/Currency';
@@ -21,6 +18,7 @@ class Product extends React.Component{
         super(props);
         this.id = window.location.href.split('/')[3];
 
+        this.htmlRef = React.createRef();
         this.state = {
             selectedAttributes : null,
             data : null,
@@ -34,8 +32,12 @@ class Product extends React.Component{
             ({
                 ...prevState, 
                 data : result.data, 
-                selectedAttributes : result.data.product.attributes.map(item => ({name : item.name, value : item.items[0].value}))}));   
+                selectedAttributes : result.data.product.attributes.map(item => ({name : item.name, value : item.items[0].value}))
+            }));   
             })
+    }
+    componentDidUpdate(){
+        this.htmlRef.current.innerHTML = this.state.data.product.description;
     }
 
     handleAttributeChange = (attributeName, attributeValue) => {
@@ -68,6 +70,7 @@ class Product extends React.Component{
         if(!this.state.data){
             return <LoadingBar />
         }
+        
         const price = getCurrency(this.props.currency, this.state.data.product.prices);
         return (
             <>
@@ -81,8 +84,10 @@ class Product extends React.Component{
                     onClick={() => this.handleImage(index)}/>)}
                 </div>
                 <div className="product_content">
-                    <div className="product_content_img">
-                        <img src={this.state.data.product.gallery[this.state.displayedImageIndex]} alt={`${this.state.data.product.name}_img`} />
+                    <div className={`product_content_img ${this.state.data.product.inStock ? '' : 'product_content_img_unavailable'}`}>
+                        <img 
+                        src={this.state.data.product.gallery[this.state.displayedImageIndex]} 
+                        alt={`${this.state.data.product.name}_img`} />
                     </div>
                     <div className="product_content_description">
                         <header className='product_name'>
@@ -112,7 +117,7 @@ class Product extends React.Component{
                         onClick={() => this.state.data.product.inStock ? this.handleCartBtn(price) : undefined}>
                             {this.state.data.product.inStock ? 'Add To Cart' : 'Out Of Stock'}
                         </div>
-                        <div className="product_description" dangerouslySetInnerHTML={{__html: this.state.data.product.description}}/>
+                        <div ref={this.htmlRef} className="product_description"/>
                     </div>
                 </div>
             </>

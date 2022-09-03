@@ -61,7 +61,6 @@ class Navbar extends React.Component{
     }
 
     render(){
-        console.log(Number(10.2).toFixed(2));
         if(this.state.error){
             return <h1 className='fetch_error_message'>{
                 this.state.error.message}

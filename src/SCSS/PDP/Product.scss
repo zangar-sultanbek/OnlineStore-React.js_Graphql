@@ -15,6 +15,7 @@
     animation: opacityAnim1 .75s .3s backwards;
 
     .product_img{
+        border: 1px solid rgba(168, 172, 176, .19);
         $width: 80px;
         $height: 80px;
 
@@ -26,7 +27,7 @@
         min-height: $height;
 
         cursor: pointer;
-        object-fit: contain;
+        object-fit: cover;
         object-position: 0%;
     }
 }
@@ -42,6 +43,9 @@
     &_img{
         height: 500px;
         grid-column: span 2;
+        border: 1px solid transparent;
+        transition: border-color .3s;
+        position: relative;
 
         img{
             width: 100%;
@@ -51,6 +55,37 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+        }
+        &_unavailable{
+            img{
+                opacity: .5;
+            }
+            
+            &::after{
+                content: 'Out of stock';
+                @include fontMixin('raleway', '--c-gray', 'secondary', 'regular');
+    
+                position: absolute;
+    
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+    
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+    
+                width: 100%;
+                text-align: center;
+                user-select: none;
+                text-transform: uppercase;
+            }
+        }
+
+        &:hover{
+            border-color: rgba(168, 172, 176, .19);
         }
     }
     &_description{
@@ -135,7 +170,7 @@
             height: $height;
             max-height: $height;
             min-height: $height;
-            border: 1px solid rgba(0, 0, 0, .15);
+            
         }
     }
 

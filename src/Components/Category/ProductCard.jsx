@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector, connect} from 'react-redux';
+import React from 'react';
+import {connect} from 'react-redux';
 import cartBtnIcon from '../../Assets/Icons/Category/Circle_Icon.svg';
 import {TYPES} from '../../JS/Redux/Reducers';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getCurrency } from '../../JS/Methods/Currency';
 
 const mapStateToProps = state => {
@@ -32,9 +32,8 @@ class ProductCard extends React.Component{
           to={`/${id}`}
           className={`product_card ${inStock ? 'product_card_hoverable' : 'product_card_disabled'}`
           }>
-            <div className='product_card_img'>
+            <div className={`product_card_img ${inStock ? '' : 'img_stock'}`}>
               <img src={gallery[0]} alt={name}/>
-              {!inStock && <span className='img_stock'>out of stock</span>}
               {inStock 
               &&  
               <button 
@@ -43,7 +42,7 @@ class ProductCard extends React.Component{
               >
                 <img src={cartBtnIcon} alt='cart'/></button>}
               </div>
-            <div className='product_card_description'>
+            <div className={`product_card_description ${inStock ? '' : 'product_card_description_disabled'}`}>
               <span className='description_name'>{name}</span>
               <h4 className='description_price'>{price.priceCurrency.symbol}{price.amount}</h4>
             </div>

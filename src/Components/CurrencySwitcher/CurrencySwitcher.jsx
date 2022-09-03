@@ -1,11 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
 import '../../SCSS/CurrencySwitcher/CurrencySwitcher.scss';
 import dropIcon from '../../Assets/Icons/Navbar/Vector.svg';
-import { useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import {TYPES} from '../../JS/Redux/Reducers';
-import { useRef } from 'react';
-import { useEffect } from 'react';
 
 class CurrencySwitcher extends React.Component{
     constructor(props){
@@ -15,7 +12,6 @@ class CurrencySwitcher extends React.Component{
         isSelectOpen : false
       }
     }
-
 
   handleSelectOpen = () => this.setState(prevState => ({...prevState, isSelectOpen : !prevState.isSelectOpen}));
 
@@ -29,7 +25,11 @@ class CurrencySwitcher extends React.Component{
       this.props.dispatch({type: TYPES.currency.setCurrency, payload: {label, symbol}});
       this.setState(prevState => ({...prevState, isSelectOpen : false}));
   }
-    
+  
+    componentDidMount(){
+        
+    }
+
     componentDidUpdate = (prevProps, prevState) => {
         if(this.state.isSelectOpen !== prevState.isSelectOpen){
           if(this.isSelectOpen){
