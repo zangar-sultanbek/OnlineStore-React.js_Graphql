@@ -5,6 +5,7 @@ import ProductCard from './ProductCard';
 class ProductList extends React.Component{
     constructor(props){
         super(props);
+        
     }
 
     render(){

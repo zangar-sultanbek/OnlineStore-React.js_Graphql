@@ -16,3 +16,14 @@
         transform: translateY(0);
     }
 }
+
+@keyframes slideHorizontal{
+    from{
+        transform: translateX(300px);
+    }
+}
+@keyframes slideVertical{
+    from{
+        transform: translateY(-300px);
+    }
+}

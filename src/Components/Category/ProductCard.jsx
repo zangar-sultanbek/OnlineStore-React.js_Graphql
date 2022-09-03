@@ -26,10 +26,10 @@ class ProductCard extends React.Component{
 
     render(){
       const price = getCurrency(this.props.currency, this.props.product.prices);
-      const {id,inStock, name, gallery} = this.props.product;
+      const {id,inStock, name, gallery, category} = this.props.product;
       return (
           <Link 
-          to={`/${id}`}
+          to={`/${category + '/' + id}`}
           className={`product_card ${inStock ? 'product_card_hoverable' : 'product_card_disabled'}`
           }>
             <div className={`product_card_img ${inStock ? '' : 'img_stock'}`}>

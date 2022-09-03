@@ -9,8 +9,7 @@ import CartOverlay from '../CartOverlay/CartOverlay';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import { getCategoriesAndCurrencies } from '../../JS/GraphQL/Queries';
 import { TYPES } from '../../JS/Redux/Reducers';
-import routes from '../../JS/Router/routes';
-import TotalPrice from '../../JS/Methods/TotalPrice';
+import totalPrice from '../../JS/Methods/TotalPrice';
 import client from '../../Client';
 
 const mapStateToProps = state => ({
@@ -68,7 +67,7 @@ class Navbar extends React.Component{
                 (Please make sure the GraphQL server is <strong>running</strong> on port <strong>4000</strong>)</h1>
         }
 
-        const totalPrice = TotalPrice(this.props.cart, this.props.currency);
+        const {total, quantity} = totalPrice(this.props.cart, this.props.currency);
         return (
         <>
             <header className='global_header'>
@@ -76,7 +75,7 @@ class Navbar extends React.Component{
                     <div className="navbar_navigation">
                         {this.state.data?.categories.map(category => 
                             <Link
-                            to={routes.categoryAll}
+                            to={category.name}
                             key={category.name} 
                             onClick={() => this.handleCategorySwitch(category.name)}
                             className={category.name === this.state.selectedCategory ? 'category_active' : 'category'}>
@@ -100,7 +99,7 @@ class Navbar extends React.Component{
                         ref={this.overlayBtnRef}
                         onClick={this.handleOverlay}>
                             <img src={cartIcon} alt='cart'/>
-                            {Boolean(this.props.cart.length) && <span className='cart_btn_value'>{totalPrice[2]}</span>}
+                            {Boolean(this.props.cart.length) && <span className='cart_btn_value'>{quantity}</span>}
                         </div>
 
                        {createPortal(
@@ -110,8 +109,8 @@ class Navbar extends React.Component{
                         isOverlayOpen={this.state.isOverlayOpen}
                         overlayBtnRef={this.overlayBtnRef}
                         handleOverlay={this.handleOverlay}
-                        cartItemsTotalSum={totalPrice[0]} 
-                        totalQuantity={totalPrice[2]}
+                        cartItemsTotalSum={total} 
+                        totalQuantity={quantity}
                         />
                         , document.getElementById('root'))}
                     </div>

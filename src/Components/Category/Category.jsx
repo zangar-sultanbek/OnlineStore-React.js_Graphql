@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import '../../SCSS/Category/Category.scss';
 import ProductList from './ProductList';
 //GraphQL
-import {getAllDataQuery, getCategory} from '../../JS/GraphQL/Queries';
+import {getCategory} from '../../JS/GraphQL/Queries';
 //Redux
 import client from '../../Client';
 
@@ -20,26 +20,14 @@ class Category extends React.Component{
         data : null,
         error : null
       }
-      console.log(props);
     }
 
     componentDidMount(){
-      client.query({query: getCategory(this.props.category)})
+      client.query({query: getCategory(this.props.selectedCategory)})
       .then(result => {
-          console.log(result);
           this.setState(({...this.state, data: result.data, productCategory : result.data.category}));
       })
       .catch(error => this.setState(({...this.state, error})));
-    }
-    
-    componentDidUpdate(){
-      if(!this.state.data){
-        return;
-      }
-
-      // if(this.state.productCategory.name !== this.props.selectedCategory){
-      //   this.setState(({...this.state, productCategory : this.state.data.categories.find(category => category.name === this.props.selectedCategory)}));
-      // }
     }
 
     render(){    

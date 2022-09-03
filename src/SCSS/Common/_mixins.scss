@@ -49,6 +49,15 @@
     object-fit: contain;
 }
 
+@mixin imageBorderMixin(){
+    border: 1px solid transparent;
+    transition: border-color .3s;
+
+    &:hover{
+        border-color: rgba(168, 172, 176, .19);
+    }
+}
+
 //Container mixins
 @mixin flexContainerMixin($direction: row, $justify: center, $align: center){
     display: flex;
@@ -113,7 +122,7 @@
     height: 85%;
     border-right: 1px solid rgba(81, 81, 81, 0.1);
     border-left: 1px solid rgba(81, 81, 81, 0.1);
-    animation: opacityAnim1 1s ;
+    animation: slideVertical .5s;
 }
 @mixin hoverBorderVerticalMixin{
     content: '';
@@ -125,5 +134,5 @@
     height: 100%;
     border-top: 1px solid rgba(81, 81, 81, 0.1);
     border-bottom: 1px solid rgba(81, 81, 81, 0.1);
-    animation: opacityAnim1 1s ;
+    animation: slideHorizontal .5s ;
 }

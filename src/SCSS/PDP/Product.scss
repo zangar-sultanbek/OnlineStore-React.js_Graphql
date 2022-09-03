@@ -44,7 +44,7 @@
         height: 500px;
         grid-column: span 2;
         border: 1px solid transparent;
-        transition: border-color .3s;
+        transition: border-color .3s, box-shadow .6s;
         position: relative;
 
         img{
@@ -85,7 +85,8 @@
         }
 
         &:hover{
-            border-color: rgba(168, 172, 176, .19);
+            box-shadow: 0 2px 35px rgba(168, 172, 176, .19);
+            // border-color: rgba(168, 172, 176, .19);
         }
     }
     &_description{

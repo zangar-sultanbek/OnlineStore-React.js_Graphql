@@ -16,7 +16,9 @@ const mapStateToProps = state => ({
 class Product extends React.Component{
     constructor(props){
         super(props);
-        this.id = window.location.href.split('/')[3];
+
+        const locationPaths = window.location.pathname.split('/');
+        this.id = locationPaths[locationPaths.length - 1];
 
         this.htmlRef = React.createRef();
         this.state = {

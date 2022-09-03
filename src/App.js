@@ -11,7 +11,7 @@ class App extends React.Component{
     return (
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Navbar />}>
+            <Route path='/' element={<Navbar />}>     
                 {Object.keys(routes).map(route => <Route key={routes[route].path} path={routes[route].path} element={routes[route].element}/>)}
             </Route>
         </Routes>

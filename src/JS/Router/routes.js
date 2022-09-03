@@ -6,27 +6,31 @@ import { Navigate } from "react-router-dom";
 const routes = {
     categoryAll: {
         path: 'all',
-        element: <Category category={'all'}/>
+        element: <Category key={'all'} category={'all'}/>
     },
     categoryClothes: {
         path: 'clothes',
-        element: <Category category={'clothes'}/>
+        element: <Category key={'clothes'} category={'clothes'}/>
     },
     categoryCloth: {
         path: 'tech',
-        element: <Category category={'tech'}/>
+        element: <Category key={'tech'} category={'tech'}/>
     },
     product: {
-        path: '/category/:id',
+        path: '/:category/:id',
         element: <Product />
     },
     cart: {
         path: 'cart',
         element: <Cart />
     },
+    home: {
+        path: '/',
+        element: <Navigate to={'all'}/>
+    },
     unmatch: {
         path: '*',
-        element: <Navigate to={'/all'}/>
+        element: <Navigate to={'all'}/>
     }
 }
 

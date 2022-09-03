@@ -29,7 +29,7 @@ class Cart extends React.Component{
   }
 
   render(){
-    const [cartItemsTotalSum, tax, quantity] = totalPrice(this.props.cart, this.props.currency);
+    const {total, tax, quantity} = totalPrice(this.props.cart, this.props.currency);
 
     return (
       <div className='cart_outlet'>
@@ -45,7 +45,7 @@ class Cart extends React.Component{
               <div className="cart_summary">
                 <p>Tax 21%: </p><strong>{this.props.currency.symbol + tax}</strong>
                 <p>Quantity: </p><strong>{quantity}</strong>
-                <p>Total: </p><strong>{this.props.currency.symbol + cartItemsTotalSum}</strong>
+                <p>Total: </p><strong>{this.props.currency.symbol + total}</strong>
               <button onClick={this.handlePurchase}>Order</button>
               </div>
             </div>

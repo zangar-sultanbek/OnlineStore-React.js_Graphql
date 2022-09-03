@@ -10,7 +10,11 @@ const calculateTotalPrice = (cart, currency) => {
     }, 0);
     const tax = total * taxPercent;
     const totalWithTax = total + tax;
-    return [totalWithTax.toFixed(2), tax.toFixed(2), quantity];
+    return {
+        total: totalWithTax.toFixed(2),
+        tax: tax.toFixed(2),
+        quantity
+    };
 }
 
 export default calculateTotalPrice;

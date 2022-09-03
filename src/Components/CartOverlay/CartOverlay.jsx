@@ -21,8 +21,6 @@ class CartOverlay extends React.Component{
     }
 
     if(!this.ref.current.contains(event.target)){  
-        console.log(event.target);
-        console.log(event.target === this.props.overlayBtnRef.current);
         this.props.handleOverlay();
     }
   }
@@ -63,7 +61,7 @@ class CartOverlay extends React.Component{
           </>
           }
           <div className='cart_content_actions'>
-             <Link to={routes.cart} onClick={this.props.handleOverlay}>
+             <Link to={routes.cart.path} onClick={this.props.handleOverlay}>
                 <div className='open-cart_btn'>
                       View Bag
                 </div>

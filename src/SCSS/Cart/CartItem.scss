@@ -55,6 +55,12 @@ $buttonSize : 26px;
         width: 170px;
         height: 190px; //To stretch, unset this height
         position: relative;
+        border: 1px solid transparent;
+        transition: border-color .5s;
+
+        &:hover{
+            border-color: rgba(168, 172, 176, .19);
+        }
 
         & > img{
             width: 100%;
