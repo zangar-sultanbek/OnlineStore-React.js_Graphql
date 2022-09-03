@@ -92,9 +92,12 @@ $contentLength : 90%;
                 position: relative;
                 
                 img{
+                    user-select: none;
+                    pointer-events: none;
                     z-index: 2;
                 }
                 &_value{
+                    pointer-events: none;
                     animation: opacityAnim1 .4s;
                     @include fontMixin('roboto', '--c-white', 'main-small', 'bold');
                     @include flexContainerMixin;

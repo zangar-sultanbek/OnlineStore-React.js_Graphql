@@ -23,6 +23,7 @@ class Navbar extends React.Component{
     constructor(props){
         super(props);
 
+        this.overlayBtnRef = React.createRef();
         this.state = {
             isOverlayOpen : false,
             selectedCategory : this.props.selectedCategory ?? null,
@@ -51,7 +52,7 @@ class Navbar extends React.Component{
     }
 
     handleOverlay = () =>
-        this.setState(({...this.state, isOverlayOpen : !this.state.isOverlayOpen}))
+        this.setState(prevState => (({...prevState, isOverlayOpen : !prevState.isOverlayOpen})));
     
     handleCategorySwitch(newCategoryName){
         if(this.state.selectedCategory !== newCategoryName){
@@ -75,7 +76,7 @@ class Navbar extends React.Component{
                     <div className="navbar_navigation">
                         {this.state.data?.categories.map(category => 
                             <Link
-                            to={routes.home}
+                            to={routes.categoryAll}
                             key={category.name} 
                             onClick={() => this.handleCategorySwitch(category.name)}
                             className={category.name === this.state.selectedCategory ? 'category_active' : 'category'}>
@@ -96,6 +97,7 @@ class Navbar extends React.Component{
                             <CurrencySwitcher currencies={this.state.data?.currencies ?? []} currency={this.props.currency}/>
                         </div>
                         <div className='cart_btn'
+                        ref={this.overlayBtnRef}
                         onClick={this.handleOverlay}>
                             <img src={cartIcon} alt='cart'/>
                             {Boolean(this.props.cart.length) && <span className='cart_btn_value'>{totalPrice[2]}</span>}
@@ -106,6 +108,7 @@ class Navbar extends React.Component{
                         cart={this.props.cart} 
                         currency={this.props.currency} 
                         isOverlayOpen={this.state.isOverlayOpen}
+                        overlayBtnRef={this.overlayBtnRef}
                         handleOverlay={this.handleOverlay}
                         cartItemsTotalSum={totalPrice[0]} 
                         totalQuantity={totalPrice[2]}

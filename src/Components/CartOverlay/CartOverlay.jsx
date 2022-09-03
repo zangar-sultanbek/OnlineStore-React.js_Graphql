@@ -9,15 +9,44 @@ import CartList from '../Cart/CartList';
 class CartOverlay extends React.Component{
   constructor(props){
     super(props);
+    this.ref = React.createRef();
   }
   
   handlePurchase = () => this.props.cart.length && this.props.dispatch({type: TYPES.cart.removeAll});
+
+  //Detect outside click
+  handleClickOutside = (event) => {
+    if(event.target === this.props.overlayBtnRef.current || !this.ref.current){
+      return;
+    }
+
+    if(!this.ref.current.contains(event.target)){  
+        console.log(event.target);
+        console.log(event.target === this.props.overlayBtnRef.current);
+        this.props.handleOverlay();
+    }
+  }
+  componentDidUpdate = (prevProps) => {
+    if(this.props.isOverlayOpen !== prevProps.isOverlayOpen){
+      if(this.props.isOverlayOpen){
+        document.addEventListener("mousedown", this.handleClickOutside);
+      }else{
+        document.removeEventListener("mousedown", this.handleClickOutside);
+      }
+    }
+}
+  componentWillUnmount = () => {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
 
   render(){
     return (
       <>
         <div className={this.props.isOverlayOpen ? 'cart_overlay' : 'cart_overlay_closed'} />
-        <div className={this.props.isOverlayOpen ? 'cart_content' : 'cart_content_closed'}>
+        <div 
+        ref={this.ref}
+        className={this.props.isOverlayOpen ? 'cart_content' : 'cart_content_closed'}>
           <h3 className='cart_content_header'>
               <strong>My Bag</strong>, {this.props.totalQuantity} items
           </h3>

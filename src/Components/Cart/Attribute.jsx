@@ -18,7 +18,6 @@ class Attribute extends React.Component{
     
 
     render(){
-        console.log(this.props);
         return (
             <div className={`item_attribute`}>
             <p className='item_attribute_name'>{this.props.name}:</p>

@@ -13,32 +13,35 @@ class CurrencySwitcher extends React.Component{
       }
     }
 
-  handleSelectOpen = () => this.setState(prevState => ({...prevState, isSelectOpen : !prevState.isSelectOpen}));
+    handleSelectOpen = () => this.setState(prevState => ({...prevState, isSelectOpen : !prevState.isSelectOpen}));
 
-  handleClickOutside = (event) => {
-    if(this.ref.current && !this.ref.current.contains(event.target)){  
-        this.setState(prevState => ({...prevState, isSelectOpen : false}));
-    }
-  }
-
-  handleCurrencyChange = ({label, symbol}) => {
+    
+    handleCurrencyChange = ({label, symbol}) => {
       this.props.dispatch({type: TYPES.currency.setCurrency, payload: {label, symbol}});
       this.setState(prevState => ({...prevState, isSelectOpen : false}));
-  }
-  
-    componentDidMount(){
-        
+    }
+
+    //Detect outside click
+    handleClickOutside = (event) => {
+      if(!this.ref.current){
+        return;
+      }
+
+      if(!this.ref.current.contains(event.target)){  
+          this.setState(prevState => ({...prevState, isSelectOpen : false}));
+      }
     }
 
     componentDidUpdate = (prevProps, prevState) => {
         if(this.state.isSelectOpen !== prevState.isSelectOpen){
-          if(this.isSelectOpen){
+          if(this.state.isSelectOpen){
             document.addEventListener("mousedown", this.handleClickOutside);
           }else{
             document.removeEventListener("mousedown", this.handleClickOutside);
           }
         }
     }
+    
     componentWillUnmount = () => {
       document.removeEventListener("mousedown", this.handleClickOutside);
     }

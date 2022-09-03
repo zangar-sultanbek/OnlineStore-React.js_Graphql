@@ -90,3 +90,31 @@ query{
   }
 }
 `;
+
+//2.0
+export const getCategory = (categoryName = 'all') => gql`
+query{
+  category(input: {title: "${categoryName}"}){
+    name,
+    products{
+      id,
+      name,
+      inStock,
+      gallery,
+      description,
+      category,
+      attributes{
+        id, name, type, items{
+          displayValue, value, id
+        }
+      },
+      prices{
+        amount,
+        currency{
+          label, symbol
+        }
+      },
+      brand
+    }
+  }
+}`;
