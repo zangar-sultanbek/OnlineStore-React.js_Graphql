@@ -1,5 +1,5 @@
 import './App.scss';
-import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 //Components
 import Navbar from './Components/Navbar/Navbar';
 import routes from './JS/Router/routes';

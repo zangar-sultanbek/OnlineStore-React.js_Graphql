@@ -12,9 +12,6 @@ const mapStateToProps = state => {
 }
 
 class ProductCard extends React.Component{
-    constructor(props){
-      super(props);
-    }
 
     hasAttributes = () => this.props.product.attributes.length > 0;
     addCartItem = (e, price) => {

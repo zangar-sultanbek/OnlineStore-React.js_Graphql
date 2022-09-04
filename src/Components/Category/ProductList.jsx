@@ -3,11 +3,6 @@ import LoadingProductCard from '../LoadingComponents/LoadingProductCard/LoadingP
 import ProductCard from './ProductCard';
 
 class ProductList extends React.Component{
-    constructor(props){
-        super(props);
-        
-    }
-
     render(){
         return (
             <div className='product_list'>
