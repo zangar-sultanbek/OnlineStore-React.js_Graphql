@@ -1,4 +1,5 @@
 import React from 'react';
+import SwatchWrapperSC from '../StyledComponents/Cart/Attribute.styled';
 
 class Attribute extends React.Component{
     constructor(props){
@@ -27,11 +28,12 @@ class Attribute extends React.Component{
                     {this.props.items.map(item => 
                         this.isSwatch //ternary for better readability instead of conditional attributes
                         ? 
-                        <div 
-                        onClick={this.props.isMutable ? () => this.props.handleAttributeChange(this.props.name, item.value) : undefined}
-                        key={item.id}
-                        className={this.isSelectedAttribute(item) ? 'attribute_swatch_selected' : 'attribute_swatch'}
-                        style={{backgroundColor: item.value}}/>
+                        <SwatchWrapperSC bg={item.value} key={item.id}>
+                            <div 
+                            onClick={this.props.isMutable ? () => this.props.handleAttributeChange(this.props.name, item.value) : undefined}
+                            className={this.isSelectedAttribute(item) ? 'attribute_swatch_selected' : 'attribute_swatch'}
+                            />
+                        </SwatchWrapperSC>
                         : 
                         <div
                         onClick={this.props.isMutable ? () => this.props.handleAttributeChange(this.props.name, item.value) : undefined}

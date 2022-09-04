@@ -10,6 +10,7 @@ $buttonSize : 26px;
     align-items: stretch;
 
     &_content{
+        padding-left: 2px;
         flex: 1;
         max-width: 125px;
         @include flexColumnContainerMixin;
@@ -30,6 +31,7 @@ $buttonSize : 26px;
         //.item_attributes{} Place of item attributes
     }
     &_actions{
+        margin-left: 10px;
         flex: .25;
         @include flexContainerMixin(column, space-between);
         
